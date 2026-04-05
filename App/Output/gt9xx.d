@@ -71,5 +71,9 @@
 ..\output\gt9xx.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h
 ..\output\gt9xx.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h
 ..\output\gt9xx.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
+..\output\gt9xx.o: ..\Lib\EasyLogger\inc\elog.h
+..\output\gt9xx.o: ..\Lib\EasyLogger\inc\elog_cfg.h
+..\output\gt9xx.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\output\gt9xx.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdbool.h
 ..\output\gt9xx.o: ..\HAL\./BSP/TOUCH/bsp_i2c_touch.h
 ..\output\gt9xx.o: ..\HAL\./BSP/LCD/bsp_ili9806g_lcd.h

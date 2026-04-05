@@ -74,6 +74,15 @@
 ..\output\ffsystem.o: ..\FreeRTOS\include\FreeRTOS.h
 ..\output\ffsystem.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stddef.h
 ..\output\ffsystem.o: ..\User\FreeRTOSConfig.h
+..\output\ffsystem.o: ..\Lib\EasyLogger\inc\elog.h
+..\output\ffsystem.o: ..\Lib\EasyLogger\inc\elog_cfg.h
+..\output\ffsystem.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+..\output\ffsystem.o: ..\Lib\CmBacktrace\cm_backtrace.h
+..\output\ffsystem.o: ..\Lib\CmBacktrace\cmb_def.h
+..\output\ffsystem.o: ..\Lib\CmBacktrace\cmb_cfg.h
+..\output\ffsystem.o: ..\Lib\CmBacktrace\cmb_port.h
+..\output\ffsystem.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\output\ffsystem.o: ..\FreeRTOS\include\FreeRTOS.h
 ..\output\ffsystem.o: ..\FreeRTOS\include\projdefs.h
 ..\output\ffsystem.o: ..\FreeRTOS\include\portable.h
 ..\output\ffsystem.o: ..\FreeRTOS\include\deprecated_definitions.h

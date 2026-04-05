@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "bsp_eth.h": "c",
+        "sys_arch.h": "c",
+        "mqttclient.h": "c",
+        "tasks_test.h": "c",
+        "mqttpacket.h": "c",
+        "string.h": "c",
+        "sockets.h": "c",
+        "cjson_process.h": "c",
+        "transport.h": "c",
+        "lwipopts.h": "c",
+        "task.h": "c",
+        "freertos.h": "c",
+        "opt.h": "c",
+        "queue.h": "c",
+        "tasks_upgrade.h": "c",
+        "debug.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

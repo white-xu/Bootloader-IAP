@@ -72,6 +72,14 @@
 ..\output\timers.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h
 ..\output\timers.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h
 ..\output\timers.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
+..\output\timers.o: ..\Lib\EasyLogger\inc\elog.h
+..\output\timers.o: ..\Lib\EasyLogger\inc\elog_cfg.h
+..\output\timers.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+..\output\timers.o: ..\Lib\CmBacktrace\cm_backtrace.h
+..\output\timers.o: ..\Lib\CmBacktrace\cmb_def.h
+..\output\timers.o: ..\Lib\CmBacktrace\cmb_cfg.h
+..\output\timers.o: ..\Lib\CmBacktrace\cmb_port.h
+..\output\timers.o: ..\FreeRTOS\include\FreeRTOS.h
 ..\output\timers.o: ..\FreeRTOS\include\projdefs.h
 ..\output\timers.o: ..\FreeRTOS\include\portable.h
 ..\output\timers.o: ..\FreeRTOS\include\deprecated_definitions.h

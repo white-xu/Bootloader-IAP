@@ -70,3 +70,7 @@
 ..\output\bsp_i2c_touch.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h
 ..\output\bsp_i2c_touch.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
 ..\output\bsp_i2c_touch.o: ..\HAL\./BSP/TOUCH/gt9xx.h
+..\output\bsp_i2c_touch.o: ..\Lib\EasyLogger\inc\elog.h
+..\output\bsp_i2c_touch.o: ..\Lib\EasyLogger\inc\elog_cfg.h
+..\output\bsp_i2c_touch.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\output\bsp_i2c_touch.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdbool.h

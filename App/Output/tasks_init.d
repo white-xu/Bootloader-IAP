@@ -1,8 +1,11 @@
 ..\output\tasks_init.o: ..\User\Tasks\src\tasks_init.c
-..\output\tasks_init.o: ..\User\Tasks\inc\tasks_init.h
+..\output\tasks_init.o: ..\Lib\EasyLogger\inc\elog.h
+..\output\tasks_init.o: ..\Lib\EasyLogger\inc\elog_cfg.h
 ..\output\tasks_init.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdint.h
-..\output\tasks_init.o: ..\FreeRTOS\include\FreeRTOS.h
 ..\output\tasks_init.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\output\tasks_init.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+..\output\tasks_init.o: ..\User\Tasks\inc\tasks_init.h
+..\output\tasks_init.o: ..\FreeRTOS\include\FreeRTOS.h
 ..\output\tasks_init.o: ..\User\FreeRTOSConfig.h
 ..\output\tasks_init.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\output\tasks_init.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h
@@ -72,6 +75,12 @@
 ..\output\tasks_init.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h
 ..\output\tasks_init.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h
 ..\output\tasks_init.o: ..\Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
+..\output\tasks_init.o: ..\Lib\CmBacktrace\cm_backtrace.h
+..\output\tasks_init.o: ..\Lib\CmBacktrace\cmb_def.h
+..\output\tasks_init.o: ..\Lib\CmBacktrace\cmb_cfg.h
+..\output\tasks_init.o: ..\Lib\CmBacktrace\cmb_port.h
+..\output\tasks_init.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+..\output\tasks_init.o: ..\FreeRTOS\include\FreeRTOS.h
 ..\output\tasks_init.o: ..\FreeRTOS\include\projdefs.h
 ..\output\tasks_init.o: ..\FreeRTOS\include\portable.h
 ..\output\tasks_init.o: ..\FreeRTOS\include\deprecated_definitions.h
@@ -79,5 +88,4 @@
 ..\output\tasks_init.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\output\tasks_init.o: ..\FreeRTOS\include\task.h
 ..\output\tasks_init.o: ..\FreeRTOS\include\list.h
-..\output\tasks_init.o: ..\SYSTEM\./debug/debug.h
 ..\output\tasks_init.o: ..\User\Tasks\inc\tasks_test.h
