@@ -88,4 +88,5 @@
 ..\output\tasks_init.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\output\tasks_init.o: ..\FreeRTOS\include\task.h
 ..\output\tasks_init.o: ..\FreeRTOS\include\list.h
+..\output\tasks_init.o: ..\User\Tasks\inc\tasks_lwip.h
 ..\output\tasks_init.o: ..\User\Tasks\inc\tasks_test.h
