@@ -33,8 +33,9 @@
 #define __CC_H__
 
 #include "stdio.h"
+#include <stdint.h>
 
-#include "main.h"
+#include "lwip_compat.h"
 
 //typedef unsigned   char    u8_t;
 //typedef signed     char    s8_t;
@@ -91,6 +92,6 @@
 #endif
 
 
-#define LWIP_PLATFORM_ASSERT(x) do {printf(x);}while(0)
+#define LWIP_PLATFORM_ASSERT(x) do { PRINT_ERR("%s", x); } while (0)
 
 #endif /* __CC_H__ */

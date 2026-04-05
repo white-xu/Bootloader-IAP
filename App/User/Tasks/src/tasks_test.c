@@ -5,7 +5,7 @@
 #include "stm32f4xx.h"
 #include "tasks_test.h"
 
-#define TEST_TASK_FAULT_INJECT_ENABLE      1
+#define TEST_TASK_FAULT_INJECT_ENABLE      0
 #define TEST_TASK_FAULT_INJECT_DELAY_MS    3000U
 #define TEST_TASK_FAULT_TYPE_DIV_ZERO      1
 #define TEST_TASK_FAULT_TYPE_BAD_JUMP      2

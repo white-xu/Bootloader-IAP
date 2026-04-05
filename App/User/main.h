@@ -11,12 +11,17 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32f4xx_hal.h"
 #include "init.h"
 #include "tasks_init.h"
+#include "bsp_eth.h"
+#include "lwip_compat.h"
 
 /* FreeRTOS */
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
+#include "semphr.h"
 
 #endif /* __MAIN_H */
 

@@ -4,6 +4,7 @@
 
 #include "tasks_init.h"
 
+#include "tasks_lwip.h"
 #include "tasks_test.h"
 
 /*
@@ -28,6 +29,11 @@ typedef struct
 TaskHandle_t test_task_handle = NULL;
 
 /**
+ * @brief lwIP 启动任务句柄
+ */
+TaskHandle_t lwip_bootstrap_task_handle = NULL;
+
+/**
  * @brief 升级任务句柄
  */
 TaskHandle_t upgrade_task_handle = NULL;
@@ -41,6 +47,14 @@ TaskHandle_t gui_task_handle = NULL;
  * @brief 任务配置结构体
  */
 static TaskCreateParams_t taskParamsArray[TASK_COUNT] = {
+   {
+       .pvTaskCode = lwip_bootstrap_task,
+       .pcName = "lwip_bootstrap",
+       .usStackDepth = 1024,
+       .pvParameters = NULL,
+       .uxPriority = 3,
+       .pvCreatedTask = &lwip_bootstrap_task_handle
+   },
    {
        .pvTaskCode = test_task,
        .pcName = "test_task",

@@ -1,0 +1,23 @@
+; Custom scatter file for App + LwIP.
+; Select this file manually in Keil when you want to keep ETH DMA buffers
+; out of the 0x10000000 CPU-only SRAM window.
+
+LR_IROM1 0x08000000 0x00100000  {
+  ER_IROM1 0x08000000 0x00100000  {
+   *.o (RESET, +First)
+   *(InRoot$$Sections)
+   .ANY (+RO)
+  }
+
+  RW_ETH_DMA 0x20000000 0x00008000  {
+   bsp_eth.o (+RW +ZI)
+  }
+
+  RW_IRAM1 0x20008000 0x00018000  {
+   .ANY (+RW +ZI)
+  }
+
+  RW_IRAM2 0x10000000 0x00010000  {
+   .ANY (+RW +ZI)
+  }
+}

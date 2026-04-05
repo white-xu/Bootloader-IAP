@@ -125,7 +125,7 @@ static void low_level_init(struct netif *netif)
 { 
   HAL_StatusTypeDef hal_eth_init_status;
   
-  //³õÊ¼»¯bsp¡ªeth
+  //åˆå§‹åŒ–bspâ€”eth
   hal_eth_init_status = Bsp_Eth_Init();
 
   if (hal_eth_init_status == HAL_OK)
@@ -170,16 +170,16 @@ static void low_level_init(struct netif *netif)
 
   /* create the task that handles the ETH_MAC */
 	sys_thread_new("ETHIN",
-                  ethernetif_input,  /* ÈÎÎñÈë¿Úº¯Êı */
-                  netif,        	  /* ÈÎÎñÈë¿Úº¯Êı²ÎÊı */
-                  NETIF_IN_TASK_STACK_SIZE,/* ÈÎÎñÕ»´óĞ¡ */
-                  NETIF_IN_TASK_PRIORITY); /* ÈÎÎñµÄÓÅÏÈ¼¶ */
+                  ethernetif_input,  /* ä»»åŠ¡å…¥å£å‡½æ•° */
+                  netif,        	  /* ä»»åŠ¡å…¥å£å‡½æ•°å‚æ•° */
+                  NETIF_IN_TASK_STACK_SIZE,/* ä»»åŠ¡æ ˆå¤§å° */
+                  NETIF_IN_TASK_PRIORITY); /* ä»»åŠ¡çš„ä¼˜å…ˆçº§ */
                   
 //	sys_thread_new("ETHTX",
-//                  ethernetif_output,  /* ÈÎÎñÈë¿Úº¯Êı */
-//                  netif,        	  /* ÈÎÎñÈë¿Úº¯Êı²ÎÊı */
-//                  NETIF_OUT_TASK_STACK_SIZE,/* ÈÎÎñÕ»´óĞ¡ */
-//                  NETIF_OUT_TASK_PRIORITY); /* ÈÎÎñµÄÓÅÏÈ¼¶ */
+//                  ethernetif_output,  /* ä»»åŠ¡å…¥å£å‡½æ•° */
+//                  netif,        	  /* ä»»åŠ¡å…¥å£å‡½æ•°å‚æ•° */
+//                  NETIF_OUT_TASK_STACK_SIZE,/* ä»»åŠ¡æ ˆå¤§å° */
+//                  NETIF_OUT_TASK_PRIORITY); /* ä»»åŠ¡çš„ä¼˜å…ˆçº§ */
                                  
 /* USER CODE END PHY_PRE_CONFIG */
   

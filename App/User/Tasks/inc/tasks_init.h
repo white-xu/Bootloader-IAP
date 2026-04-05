@@ -12,7 +12,7 @@ extern "C" {
 /**
  * @brief 任务数量
  */
-#define TASK_COUNT 1
+#define TASK_COUNT 2
 
 /*
  * 任务句柄
@@ -21,6 +21,11 @@ extern "C" {
  * @brief 测试任务句柄
  */
 extern TaskHandle_t test_task_handle;
+
+/**
+ * @brief lwIP 启动任务句柄
+ */
+extern TaskHandle_t lwip_bootstrap_task_handle;
 
 /**
  * @brief  User task initialization
