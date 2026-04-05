@@ -3,6 +3,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#include "stm32f4xx.h"
+
 extern void elog_port_output(const char *log, size_t size);
 
 void cmb_println_impl(const char *format, ...)
@@ -32,4 +34,19 @@ void cmb_println_impl(const char *format, ...)
     output_buf[total_len] = '\0';
 
     elog_port_output(output_buf, total_len);
+}
+
+uint32_t cmb_get_current_sp(void)
+{
+    if (__get_IPSR() != 0U)
+    {
+        return __get_MSP();
+    }
+
+    if ((__get_CONTROL() & CONTROL_SPSEL_Msk) != 0U)
+    {
+        return __get_PSP();
+    }
+
+    return __get_MSP();
 }

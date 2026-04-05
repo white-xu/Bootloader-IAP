@@ -10,6 +10,7 @@
 #define LOG_LVL ELOG_LVL_VERBOSE
 #include "elog.h"
 #include "cm_backtrace.h"
+#include "cmb_port.h"
 
 /* FreeRTOS */
 #include "FreeRTOS.h"
@@ -53,9 +54,6 @@ static void SystemClock_Config(void);
  * @brief FatFS init
  */
 static void fatfs_init(void);
-#ifdef USE_FULL_ASSERT
-static uint32_t cmb_get_current_sp(void);
-#endif
 /*-----------------------------------------------------------*/
 
 /**
@@ -206,21 +204,6 @@ static void SystemClock_Config(void)
     }
 }
 /*-----------------------------------------------------------*/
-
-static uint32_t cmb_get_current_sp(void)
-{
-    if (__get_IPSR() != 0U)
-    {
-        return __get_MSP();
-    }
-
-    if ((__get_CONTROL() & CONTROL_SPSEL_Msk) != 0U)
-    {
-        return __get_PSP();
-    }
-
-    return __get_MSP();
-}
 
 #ifdef USE_FULL_ASSERT
 void assert_failed(uint8_t *file, uint32_t line)

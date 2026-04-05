@@ -72,6 +72,7 @@
 #include "stm32f4xx.h"
 #include "elog.h"
 #include "cm_backtrace.h"
+#include "cmb_port.h"
 
 // 针对不同的编译器调用不同的stdint.h文件
 #if defined(__ICCARM__) || defined(__CC_ARM) || defined(__GNUC__)
@@ -80,14 +81,11 @@ extern uint32_t SystemCoreClock;
 #endif
 
 // 断言
-#define CM_BACKTRACE_CUR_SP() \
-    ((__get_IPSR() != 0U) ? __get_MSP() : (((__get_CONTROL() & CONTROL_SPSEL_Msk) != 0U) ? __get_PSP() : __get_MSP()))
-
 #define vAssertCalled(file, line)                 \
     do                                            \
     {                                             \
         elog_a("freertos", "Error:%s,%d", file, line); \
-        cm_backtrace_assert(CM_BACKTRACE_CUR_SP()); \
+        cm_backtrace_assert(cmb_get_current_sp()); \
         for (;;)                                  \
         {                                         \
         }                                         \
