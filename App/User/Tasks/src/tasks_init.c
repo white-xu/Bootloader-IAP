@@ -1,6 +1,8 @@
 #include "tasks_init.h"
 
-#include "./debug/debug.h"
+#define LOG_TAG "tasks_init"
+#define LOG_LVL ELOG_LVL_VERBOSE
+#include "elog.h"
 
 #include "tasks_test.h"
 
@@ -79,12 +81,12 @@ static BaseType_t createTasksFromArray(const TaskCreateParams_t *paramsArray, ui
 
         if (xResult != pdPASS)
         {
-            PRINT_ERR("create task failed: %s", params->pcName);
+            log_e("create task failed: %s", params->pcName);
             break;
         }
         else
         {
-            PRINT_INFO("create task success: %s", params->pcName);
+            log_i("create task success: %s", params->pcName);
         }
     }
     taskEXIT_CRITICAL();               // 退出临界区

@@ -336,7 +336,7 @@
               <MiscControls>--no-multibyte-chars</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\User;..\User\Tasks\inc;..\Lib\EasyLogger\inc;..\Middlewares\FatFs;..\Middlewares\FatFs\drivers;..\Middlewares;..\FreeRTOS\include;..\FreeRTOS\port\RVDS\ARM_CM4F;..\HAL;..\SYSTEM;..\Libraries\CMSIS\Include;..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\STM32F4xx_HAL_Driver\Inc</IncludePath>
+              <IncludePath>..\User;..\User\Tasks\inc;..\Lib\EasyLogger\inc;..\Lib\CmBacktrace;..\Middlewares\FatFs;..\Middlewares\FatFs\drivers;..\Middlewares;..\FreeRTOS\include;..\FreeRTOS\port\RVDS\ARM_CM4F;..\HAL;..\SYSTEM;..\Libraries\CMSIS\Include;..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\STM32F4xx_HAL_Driver\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -419,9 +419,43 @@
         </Group>
         <Group>
           <GroupName>Lib/EasyLogger</GroupName>
+          <Files>
+            <File>
+              <FileName>elog.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Lib\EasyLogger\src\elog.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Lib\EasyLogger\src\elog_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Lib\EasyLogger\port\elog_port.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Lib/CmBacktrace</GroupName>
+          <Files>
+            <File>
+              <FileName>cm_backtrace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Lib\CmBacktrace\cm_backtrace.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmb_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Lib\CmBacktrace\cmb_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmb_fault.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\Lib\CmBacktrace\fault_handler\keil\cmb_fault.S</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Middlewares/FatFS/src</GroupName>
@@ -541,11 +575,6 @@
         <Group>
           <GroupName>SYSTEM</GroupName>
           <Files>
-            <File>
-              <FileName>debug.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\Debug\debug.c</FilePath>
-            </File>
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>

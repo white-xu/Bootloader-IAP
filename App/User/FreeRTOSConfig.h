@@ -70,6 +70,8 @@
 #define FREERTOS_CONFIG_H
 
 #include "stm32f4xx.h"
+#include "elog.h"
+#include "cm_backtrace.h"
 
 // 针对不同的编译器调用不同的stdint.h文件
 #if defined(__ICCARM__) || defined(__CC_ARM) || defined(__GNUC__)
@@ -78,10 +80,26 @@ extern uint32_t SystemCoreClock;
 #endif
 
 // 断言
-#define vAssertCalled(char, int) printf("Error:%s,%d\r\n", char, int)
-#define configASSERT(x) \
-    if ((x) == 0)       \
-    vAssertCalled(__FILE__, __LINE__)
+#define CM_BACKTRACE_CUR_SP() \
+    ((__get_IPSR() != 0U) ? __get_MSP() : (((__get_CONTROL() & CONTROL_SPSEL_Msk) != 0U) ? __get_PSP() : __get_MSP()))
+
+#define vAssertCalled(file, line)                 \
+    do                                            \
+    {                                             \
+        elog_a("freertos", "Error:%s,%d", file, line); \
+        cm_backtrace_assert(CM_BACKTRACE_CUR_SP()); \
+        for (;;)                                  \
+        {                                         \
+        }                                         \
+    } while (0)
+#define configASSERT(x)        \
+    do                         \
+    {                          \
+        if ((x) == 0)          \
+        {                      \
+            vAssertCalled(__FILE__, __LINE__); \
+        }                      \
+    } while (0)
 
 /************************************************************************
  *               FreeRTOS基础配置配置选项
@@ -302,3 +320,4 @@ extern uint32_t SystemCoreClock;
 #endif
 
 #endif /* FREERTOS_CONFIG_H */
+

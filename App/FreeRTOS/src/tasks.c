@@ -302,6 +302,7 @@ typedef struct tskTaskControlBlock
 	ListItem_t			xEventListItem;		/*< Used to reference a task from an event list. */
 	UBaseType_t			uxPriority;			/*< The priority of the task.  0 is the lowest priority. */
 	StackType_t			*pxStack;			/*< Points to the start of the stack. */
+	uint32_t			uxSizeOfStack;		/*< Stack size in StackType_t units, used by CmBacktrace. */
 	char				pcTaskName[ configMAX_TASK_NAME_LEN ];/*< Descriptive name given to the task when created.  Facilitates debugging only. */ /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 
 	#if ( portSTACK_GROWTH > 0 )
@@ -791,6 +792,8 @@ UBaseType_t x;
 	#endif /* portUSING_MPU_WRAPPERS == 1 */
 
 	/* Avoid dependency on memset() if it is not required. */
+	pxNewTCB->uxSizeOfStack = ulStackDepth;
+
 	#if( ( configCHECK_FOR_STACK_OVERFLOW > 1 ) || ( configUSE_TRACE_FACILITY == 1 ) || ( INCLUDE_uxTaskGetStackHighWaterMark == 1 ) )
 	{
 		/* Fill the stack with a known value to assist debugging. */
@@ -3671,6 +3674,24 @@ TCB_t *pxTCB;
 	}
 
 #endif /* ( ( INCLUDE_xTaskGetCurrentTaskHandle == 1 ) || ( configUSE_MUTEXES == 1 ) ) */
+/*-----------------------------------------------------------*/
+
+uint32_t *vTaskStackAddr( void )
+{
+	return ( uint32_t * ) pxCurrentTCB->pxStack;
+}
+/*-----------------------------------------------------------*/
+
+uint32_t vTaskStackSize( void )
+{
+	return pxCurrentTCB->uxSizeOfStack;
+}
+/*-----------------------------------------------------------*/
+
+char *vTaskName( void )
+{
+	return pxCurrentTCB->pcTaskName;
+}
 /*-----------------------------------------------------------*/
 
 #if ( ( INCLUDE_xTaskGetSchedulerState == 1 ) || ( configUSE_TIMERS == 1 ) )

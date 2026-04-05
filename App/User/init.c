@@ -4,8 +4,12 @@
 #include "stm32f4xx_hal.h"
 
 /* SYSTEM */
-#include "./debug/debug.h"
 #include "./delay/delay.h"
+
+#define LOG_TAG "init"
+#define LOG_LVL ELOG_LVL_VERBOSE
+#include "elog.h"
+#include "cm_backtrace.h"
 
 /* FreeRTOS */
 #include "FreeRTOS.h"
@@ -49,6 +53,7 @@ static void SystemClock_Config(void);
  * @brief FatFS init
  */
 static void fatfs_init(void);
+static uint32_t cmb_get_current_sp(void);
 /*-----------------------------------------------------------*/
 
 /**
@@ -62,7 +67,16 @@ void init(void)
 
     /* SYSTEM Init*/
     CPU_TS_TmrInit();
-    DEBUG_USART_Config();
+    elog_init();
+    elog_set_fmt(ELOG_LVL_ASSERT, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME | ELOG_FMT_DIR | ELOG_FMT_FUNC | ELOG_FMT_LINE);
+    elog_set_fmt(ELOG_LVL_ERROR, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME | ELOG_FMT_DIR | ELOG_FMT_FUNC | ELOG_FMT_LINE);
+    elog_set_fmt(ELOG_LVL_WARN, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME | ELOG_FMT_DIR | ELOG_FMT_FUNC | ELOG_FMT_LINE);
+    elog_set_fmt(ELOG_LVL_INFO, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME | ELOG_FMT_DIR | ELOG_FMT_FUNC | ELOG_FMT_LINE);
+    elog_set_fmt(ELOG_LVL_DEBUG, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME | ELOG_FMT_DIR | ELOG_FMT_FUNC | ELOG_FMT_LINE);
+    elog_set_fmt(ELOG_LVL_VERBOSE, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME | ELOG_FMT_DIR | ELOG_FMT_FUNC | ELOG_FMT_LINE);
+    elog_start();
+    cm_backtrace_init("BootloaderAndIAP", "STM32F407", "1.0.0");
+    cm_backtrace_firmware_info();
 
     /* FatFS Init*/
     fatfs_init();
@@ -83,13 +97,13 @@ static void fatfs_init(void)
     res_sd = f_mount(&fs, SDPath, 1);       /* 在外部SD卡挂载文件系统，文件系统挂载时会对SD卡初始化 */
     if (res_sd == FR_NO_FILESYSTEM)       /* 如果没有文件系统就格式化创建创建文件系统 */
     {
-        PRINT_INFO("Format the SD card");
+        log_i("Format the SD card");
         /* 格式化 */
         res_sd = f_mkfs(SDPath, 0, 0);
 
         if (res_sd == FR_OK)
         {
-            PRINT_INFO("Formatting successful");
+            log_i("Formatting successful");
             /* 格式化后，先取消挂载 */
             res_sd = f_mount(NULL, SDPath, 1);
             /* 重新挂载	*/
@@ -97,20 +111,20 @@ static void fatfs_init(void)
         }
         else
         {
-            PRINT_DEBUG("Formatting error");
+            log_e("Formatting error");
             while (1)
                 ;
         }
     }
     else if (res_sd != FR_OK)
     {
-        PRINT_DEBUG("挂载文件系统失败.(%d)", res_sd);
+        log_e("挂载文件系统失败.(%d)", res_sd);
         while (1)
             ;
     }
     else
     {
-        PRINT_INFO("The file system was successfully mounted");
+        log_i("The file system was successfully mounted");
     }
 }
 
@@ -190,3 +204,29 @@ static void SystemClock_Config(void)
     }
 }
 /*-----------------------------------------------------------*/
+
+static uint32_t cmb_get_current_sp(void)
+{
+    if (__get_IPSR() != 0U)
+    {
+        return __get_MSP();
+    }
+
+    if ((__get_CONTROL() & CONTROL_SPSEL_Msk) != 0U)
+    {
+        return __get_PSP();
+    }
+
+    return __get_MSP();
+}
+
+#ifdef USE_FULL_ASSERT
+void assert_failed(uint8_t *file, uint32_t line)
+{
+    elog_a("assert", "HAL assert failed: %s,%lu", file, line);
+    cm_backtrace_assert(cmb_get_current_sp());
+    for (;;)
+    {
+    }
+}
+#endif

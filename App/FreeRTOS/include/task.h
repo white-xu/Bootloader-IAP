@@ -2179,6 +2179,9 @@ TickType_t uxTaskResetEventItemValue( void ) PRIVILEGED_FUNCTION;
  * Return the handle of the calling task.
  */
 TaskHandle_t xTaskGetCurrentTaskHandle( void ) PRIVILEGED_FUNCTION;
+uint32_t *vTaskStackAddr( void ) PRIVILEGED_FUNCTION;
+uint32_t vTaskStackSize( void ) PRIVILEGED_FUNCTION;
+char *vTaskName( void ) PRIVILEGED_FUNCTION;
 
 /*
  * Capture the current time status for future reference.
