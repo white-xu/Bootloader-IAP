@@ -33,6 +33,14 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+/* This STM32 port uses direct synchronous UART output. */
+#ifdef ELOG_ASYNC_OUTPUT_ENABLE
+#undef ELOG_ASYNC_OUTPUT_ENABLE
+#endif
+#ifdef ELOG_BUF_OUTPUT_ENABLE
+#undef ELOG_BUF_OUTPUT_ENABLE
+#endif
+
 #if !defined(ELOG_OUTPUT_LVL)
     #error "Please configure static output log level (in elog_cfg.h)"
 #endif
