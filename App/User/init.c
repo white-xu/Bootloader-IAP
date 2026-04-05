@@ -53,7 +53,9 @@ static void SystemClock_Config(void);
  * @brief FatFS init
  */
 static void fatfs_init(void);
+#ifdef USE_FULL_ASSERT
 static uint32_t cmb_get_current_sp(void);
+#endif
 /*-----------------------------------------------------------*/
 
 /**

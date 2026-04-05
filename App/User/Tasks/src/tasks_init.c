@@ -1,8 +1,8 @@
-#include "tasks_init.h"
-
 #define LOG_TAG "tasks_init"
 #define LOG_LVL ELOG_LVL_VERBOSE
 #include "elog.h"
+
+#include "tasks_init.h"
 
 #include "tasks_test.h"
 

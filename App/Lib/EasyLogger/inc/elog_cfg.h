@@ -33,6 +33,9 @@
 #define ELOG_OUTPUT_ENABLE
 /* setting static output log level. range: from ELOG_LVL_ASSERT to ELOG_LVL_VERBOSE */
 #define ELOG_OUTPUT_LVL                          ELOG_LVL_VERBOSE
+/* force synchronous direct output on this STM32 port */
+#undef ELOG_ASYNC_OUTPUT_ENABLE
+#undef ELOG_BUF_OUTPUT_ENABLE
 /* enable assert check */
 #define ELOG_ASSERT_ENABLE
 /* buffer size for every line's log */
