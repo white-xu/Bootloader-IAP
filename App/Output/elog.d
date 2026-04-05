@@ -1,0 +1,9 @@
+..\output\elog.o: ..\Lib\EasyLogger\src\elog.c
+..\output\elog.o: ..\Lib\EasyLogger\inc\elog.h
+..\output\elog.o: ..\Lib\EasyLogger\inc\elog_cfg.h
+..\output\elog.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\output\elog.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stddef.h
+..\output\elog.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+..\output\elog.o: E:\program\keil\ARM\ARMCC\Bin\..\include\string.h
+..\output\elog.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdarg.h
+..\output\elog.o: E:\program\keil\ARM\ARMCC\Bin\..\include\stdio.h
